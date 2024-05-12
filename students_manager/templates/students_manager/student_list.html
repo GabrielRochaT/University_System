@@ -1,49 +1,40 @@
-<!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Painel de Gestão</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <nav class="navbar bg-dark mb-4" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">UniManagement</a>
-        </div>
-    </nav>
-    <main class="container">
-        <h1>Alunos Cadastrados</h1>
-        {% if student_list %}
-            <table class="table table-striped">
-                <thead>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Matrícula</th>
-                    <th scope="col">Curso</th>
-                    <th scope="col">Disciplina</th>
-                </thead>
-                <tbody>
-                    {% for student in student_list %}
-                    <tr>
-                        <th scope="row">{{student.pk}}</th>
-                        <td>{{student.name}}</td> 
-                        <td>{{student.register}}</td> 
-                        <td>{{student.id_course|default:"-"}}</td> 
-                        <td>{{student.id_class|default:"-"}}</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm">Editar</a>
-                            <a href="#" class="btn btn-danger btn-sm">Excluir</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    <a href="{%url 'std_registrate'%}" class="btn btn-success btn-sm">+</a>
-                </tbody>
-            </table>
-        {% else %}
-            <p>Não existem alunos cadastrados </p>
-        {% endif %}
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% extends "base.html" %}
+<!DOCTYPE html>
+
+{% block page_title %}
+    Painel de Gestão
+{% endblock page_title %}
+
+{% block content %}
+    <h1>Alunos Cadastrados</h1>
+    {% if student_list %}
+    <table class="table table-striped">
+        <thead>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Matrícula</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Disciplina</th>
+        </thead>
+        <tbody>
+            {% for student in student_list %}
+            <tr>
+                <th scope="row">{{student.pk}}</th>
+                
+                <td>{{student.name}}</td>
+                <td>{{student.register}}</td>
+                <td>{{student.id_course|default:"-"}}</td>
+                <td>{{student.id_class|default:"-"}}</td>
+                <td>
+                    <a href="{%url 'std_update' pk=student.pk%}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'std_delete' pk=student.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+            <a href="{%url 'std_registrate'%}" class="btn btn-success btn-sm">+</a>
+        </tbody>
+    </table>
+    {% else %}
+    <p>Não existem alunos cadastrados</p>
+    {% endif %}
+{% endblock content %}

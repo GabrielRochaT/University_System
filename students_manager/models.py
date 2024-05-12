@@ -85,6 +85,9 @@ class Classes(models.Model):
     class Meta:
         managed = False
         db_table = 'classes'
+    
+    def __str__(self):
+        return self.name
 
 
 class Course(models.Model):
@@ -97,6 +100,8 @@ class Course(models.Model):
         managed = False
         db_table = 'course'
 
+    def __str__(self):
+        return self.name
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
@@ -145,10 +150,10 @@ class DjangoSession(models.Model):
 
 class Student(models.Model):
     id_student = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50, blank=True, null=True)
-    register = models.IntegerField(blank=True, null=True)
-    id_course = models.ForeignKey(Course, models.DO_NOTHING, db_column='id_course', blank=True, null=True)
-    id_class = models.ForeignKey(Classes, models.DO_NOTHING, db_column='id_class', blank=True, null=True)
+    name = models.CharField(max_length=50, verbose_name="Nome do aluno:")
+    register = models.IntegerField(verbose_name="Matrícula:")
+    id_course = models.ForeignKey(Course, models.DO_NOTHING, db_column='id_course', blank=True, null=True, verbose_name="Curso:")
+    id_class = models.ForeignKey(Classes, models.DO_NOTHING, db_column='id_class', blank=True, null=True, verbose_name="Disciplina:")
 
     class Meta:
         managed = False
