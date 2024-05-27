@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block page_title %}{% endblock page_title %}</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static\css\style.css"/>
+  </head>
+  <body>
+    <div class="wrapper">
+      <aside id="sidebar">
+        <div class="d-flex">
+          <button id="toggle-btn" type="button">
+            <i class="lni lni-grid-alt"></i>
+          </button>
+          <div class="sidebar-logo">
+            <a href="#">UniManagement</a>
+          </div>
+        </div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link">
+              <i class="lni lni-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+      
+          <li class="sidebar-item">
+            <a href=""
+              class="sidebar-link has dropdown collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#view"
+              aria-expanded="false"
+              aria-controls="view"> 
+              <i class="lni lni-list"></i>
+              <span>Visualizar</span>
+            </a>
+
+            <ul id="view" class ="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+              <li class="sidebar-item">
+                
+                <a href="#" class="sidebar-link">
+                  <i class="lni lni-book"></i>
+                  <span>Alunos</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                  <i class="lni lni-users"></i> 
+                  <span>Professores</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                  <i class="lni lni-bookmark-alt"></i> 
+                  <span>Cursos</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link">
+                  <i class="lni lni-bookmark"></i> 
+                  <span>Disciplinas</span>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <a href="#" class="sidebar-link">
+            <i class="lni lni-exit"></i>
+            <span>Sair</span>
+          </a>
+        </div>
+      </aside>
+      <div class="main p-3">
+          {% block content %} {% endblock content %}</div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="static/js/script.js"></script>
+  </body>
+</html>
