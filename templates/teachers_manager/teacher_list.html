@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+
+{% block page_title %}
+Gestão de Professores
+{% endblock page_title %}
+
+{% block content %}
+<h1>Professores Cadastrados</h1>
+{% if teacher_list %}
+<table class="table table-striped">
+    <thead>
+            <th><a href="{%url 'prof_registrate'%}" class="btn btn-success btn-sm">+</a></th>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Matrícula</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Disciplina</th>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+            {% for teacher in teacher_list %}
+            <tr>
+                <td></td>
+                <th scope="row">{{teacher.pk}}</th>
+                <td>{{teacher.name}}</td>
+                <td>{{teacher.register}}</td>
+                <td>{{teacher.id_course|default:"-"}}</td>
+                <td>{{teacher.id_class|default:"-"}}</td>
+                <td>
+                    <a href="{%url 'prof_update' pk=teacher.pk%}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{% url 'prof_delete' pk=teacher.pk %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Não existem Professores cadastrados</p>
+    {% endif %}
+{% endblock content %}

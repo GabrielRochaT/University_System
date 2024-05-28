@@ -6,6 +6,8 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from courses_manager.models import Course
+from classes_manager.models import Classes
 
 
 class AuthGroup(models.Model):
@@ -76,33 +78,6 @@ class AuthUserUserPermissions(models.Model):
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
 
-
-class Classes(models.Model):
-    id_class = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50, blank=True, null=True)
-    workload = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'classes'
-    
-    def __str__(self):
-        return self.name
-
-
-class Course(models.Model):
-    id_course = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50, blank=True, null=True)
-    degree = models.IntegerField(blank=True, null=True)
-    id_class = models.ForeignKey(Classes, models.DO_NOTHING, db_column='id_class', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'course'
-
-    def __str__(self):
-        return self.name
-
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -158,15 +133,3 @@ class Student(models.Model):
     class Meta:
         managed = False
         db_table = 'student'
-
-
-class Teacher(models.Model):
-    id_teacher = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=50, blank=True, null=True)
-    register = models.IntegerField(blank=True, null=True)
-    id_course = models.ForeignKey(Course, models.DO_NOTHING, db_column='id_course', blank=True, null=True)
-    id_class = models.ForeignKey(Classes, models.DO_NOTHING, db_column='id_class', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'teacher'

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+{% if course.pk %}
+  Editar Curso
+{% else %}
+  Cadastrar Novo Curso
+{% endif %}
+{% endblock page_title %}
+
+{% block content %}
+  {% if course.pk %}
+    <h1>Editar Curso</h1>
+  {% else %}
+    <h1>Cadastrar Novo Curso</h1>
+  {% endif %}
+
+    <form action="" method="post">
+      {% csrf_token %}
+      {{form|crispy}}
+      <button type="submit" class="btn btn-primary">Concluir</button>
+
+    </form>
+{% endblock content %}

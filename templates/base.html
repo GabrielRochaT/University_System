@@ -21,12 +21,12 @@
             <i class="lni lni-grid-alt"></i>
           </button>
           <div class="sidebar-logo">
-            <a href="#">UniManagement</a>
+            <a href="{%url 'home'%}">UniManagement</a>
           </div>
         </div>
         <ul class="sidebar-nav">
           <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
+            <a href="{%url 'home'%}" class="sidebar-link">
               <i class="lni lni-home"></i>
               <span>Home</span>
             </a>
@@ -46,25 +46,25 @@
             <ul id="view" class ="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
               <li class="sidebar-item">
                 
-                <a href="#" class="sidebar-link">
+                <a href="{%url 'std_list'%}" class="sidebar-link">
                   <i class="lni lni-book"></i>
                   Alunos
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{%url 'prof_list'%}" class="sidebar-link">
                   <i class="lni lni-users"></i> 
                   Professores
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{%url 'course_list'%}" class="sidebar-link">
                   <i class="lni lni-bookmark-alt"></i> 
                   Cursos
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{%url 'class_list'%}" class="sidebar-link">
                   <i class="lni lni-bookmark"></i> 
                     Disciplinas
                 </a>
@@ -80,8 +80,9 @@
           </a>
         </div>
       </aside>
-      <div class="main p-3">
-          {% block content %} {% endblock content %}</div>
+      <div class="main">
+          {% block content %} {% endblock content %}
+      </div>
     </div>
 
     <script

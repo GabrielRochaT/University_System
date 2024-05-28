@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Deletar
+{% endblock page_title %}
+
+{% block content %}
+    <h1>Deletar Disciplina</h1>
+
+    <p>Quer mesmo deletar a Disciplina <b>{{classes.name}}</b>?</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim</button>
+        <a href="{% url "class_list" %}", class="btn btn-primary">Não</a>
+    </form>
+{% endblock content %}
